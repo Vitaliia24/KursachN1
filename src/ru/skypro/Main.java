@@ -2,19 +2,31 @@ package ru.skypro;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Employee[] employeeArray = new Employee[10];
+    private static Employee[] employeeArray = new Employee[10];
 
-        Employee Riddy = new Employee("Riddy", "Richard", "John", 3, 45000);
-        Employee Johnson = new Employee("Johnson", "Matthew", "Joseph", 2, 50000);
-        Employee Stark = new Employee("Stark", "Tony", "Howard", 1, 60000);
-        Employee Potter = new Employee("Potter", "Harry", "James", 2, 50000);
-        Employee Rojers = new Employee("Rojers", "Steewe", "Joe", 1, 90000);
-        Employee Pack = new Employee("Pack", "Jimin", "George", 4, 80000);
-        Employee Cooper = new Employee("Cooper", "Bradley", "Lewis", 1, 75000);
-        Employee Evance = new Employee("Evance", "Chris", "Arthur", 3, 75000);
-        Employee Collins = new Employee("Collins", "Grag", "Allen", 2, 95000);
-        Employee Stone = new Employee("Stone", "Victor", "Wesley", 5, 80000);
+    public static void main(String[] args) {
+
+        Employee riddy = new Employee("Riddy", "Richard", "John", 3, 45000);
+        Employee johnson = new Employee("Johnson", "Matthew", "Joseph", 2, 50000);
+        Employee stark = new Employee("Stark", "Tony", "Howard", 1, 60000);
+        Employee potter = new Employee("Potter", "Harry", "James", 2, 50000);
+        Employee rojers = new Employee("Rojers", "Steewe", "Joe", 1, 90000);
+        Employee pack = new Employee("Pack", "Jimin", "George", 4, 80000);
+        Employee cooper = new Employee("Cooper", "Bradley", "Lewis", 1, 75000);
+        Employee evance = new Employee("Evance", "Chris", "Arthur", 3, 75000);
+        Employee collins = new Employee("Collins", "Grag", "Allen", 2, 95000);
+        Employee stone = new Employee("Stone", "Victor", "Wesley", 5, 80000);
+
+        addEmployee(riddy);
+        addEmployee(johnson);
+        addEmployee(stark);
+        addEmployee(potter);
+        addEmployee(rojers);
+        addEmployee(pack);
+        addEmployee(cooper);
+        addEmployee(evance);
+        addEmployee(collins);
+        addEmployee(stone);
 
         printEmployee(employeeArray);
         System.out.println();
@@ -31,10 +43,21 @@ public class Main {
         printFullName(employeeArray);
     }
 
+    private static boolean addEmployee(Employee employee){
+        for (int i = 0; i< employeeArray.length; i++){
+            if (employeeArray[i]== null){
+                employeeArray[i] = employee;
+                System.out.println(employee.getFullName() + " was added");
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void printEmployee(Employee[] employees) {
-        for (int i = 0; i < employees.length ; i++) {
-            if (employees[i] != null) {
-                System.out.println(employees[i]);
+        for (Employee employee : employees) {
+            if (employee != null) {
+                System.out.println(employee);
             }
         }
     }
@@ -52,8 +75,8 @@ public class Main {
     public static float employeeWithMaxSalary(Employee[] employees) {
         float maxSalary = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null && employees[i] > maxSalary) {
-                maxSalary = employees[i];
+            if (employees[i] != null && employees[i].getSalary() > maxSalary) {
+                maxSalary = employees[i].getSalary();
             }
         }
         return maxSalary;
@@ -62,8 +85,8 @@ public class Main {
     public static float employeeWithMinSalary(Employee[] employees) {
         float minSalary = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null && employees[i] > minSalary) {
-                minSalary = employees[i];
+            if (employees[i] != null && employees[i].getSalary() > minSalary) {
+                minSalary = employees[i].getSalary();
             }
         }
         return minSalary;
@@ -72,17 +95,17 @@ public class Main {
     public static float averageSalary(Employee[] employees){
         int employeeCount = 0;
         for (int i = 0; i < employees.length; i++) {
-            if (employees != null) {
+            if (employees[i] != null) {
                 employeeCount++;
             }
         }
-        return calculateTotalSalary(Employee[] employees)/employeeCount;
+        return calculateTotalSalary(employees)/employeeCount;
     }
 
     public static void printFullName(Employee[] employees) {
         for (int i = 0; i < employees.length; i++) {
-            if (employees != null) {
-                System.out.println(employees.getFullName());
+            if (employees[i] != null) {
+                System.out.println(employees[i].getFullName());
             }
         }
     }
