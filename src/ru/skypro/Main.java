@@ -85,7 +85,7 @@ public class Main {
     public static float employeeWithMinSalary(Employee[] employees) {
         float minSalary = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null && employees[i].getSalary() > minSalary) {
+            if (employees[i] != null && employees[i].getSalary() < minSalary) {
                 minSalary = employees[i].getSalary();
             }
         }
